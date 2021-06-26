@@ -1,0 +1,3 @@
+node_modules/
+src/db/rocketq.sqlite
+package-lock.json
