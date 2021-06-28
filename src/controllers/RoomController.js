@@ -24,15 +24,21 @@ module.exports = {
     async open(req, res) {
         const db = await Database();
         const roomId = req.params.room;
-        const questions = await db.all(`SELECT * FROM questions WHERE room = ${roomId} AND read = 0`);
-        const questionsRead = await db.all(`SELECT * FROM questions WHERE room = ${roomId} AND read = 1`);
-        let isNoQuestions;
-        if (questions.length == 0) {
-            if (questionsRead.length == 0) {
-                isNoQuestions = true;
+        const isRoom = await db.get(`SELECT * FROM rooms WHERE id = ${roomId}`);
+        if (isRoom) {
+            const questions = await db.all(`SELECT * FROM questions WHERE room = ${roomId} AND read = 0`);
+            const questionsRead = await db.all(`SELECT * FROM questions WHERE room = ${roomId} AND read = 1`);
+            console.log(questions);
+            let isNoQuestions;
+            if (questions.length == 0) {
+                if (questionsRead.length == 0) {
+                    isNoQuestions = true;
+                }
             }
+            res.render('room', { roomId: roomId, questions: questions, questionsRead: questionsRead, isNoQuestions: isNoQuestions });
+        } else {
+            res.render('roomincorrect');
         }
-        res.render('room', { roomId: roomId, questions: questions, questionsRead: questionsRead, isNoQuestions: isNoQuestions });
     },
     async enter(req, res) {
         const db = await Database();
