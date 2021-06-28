@@ -34,8 +34,14 @@ module.exports = {
         }
         res.render('room', { roomId: roomId, questions: questions, questionsRead: questionsRead, isNoQuestions: isNoQuestions });
     },
-    enter(req, res) {
+    async enter(req, res) {
+        const db = await Database();
         const roomId = req.body.roomId;
-        res.redirect(`/room/${roomId}`);
+        const isRoom = await db.get(`SELECT * FROM rooms WHERE id = ${roomId}`);
+        if (isRoom) {
+            res.redirect(`/room/${roomId}`);
+        } else {
+            res.render('roomincorrect');
+        }
     }
 };

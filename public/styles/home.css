@@ -1,10 +1,12 @@
 .content {
-    display: grid;  /* transforma o layout em grid */
-    grid-template-columns: 60% 40%; /* seta o tamanho das colunas */
-    grid-template-rows: 11.4rem 1fr; /* seta o tamanho das linhas */
+    display: grid;
+    /* transforma o layout em grid */
+    grid-template-columns: 60% 40%;
+    /* seta o tamanho das colunas */
+    grid-template-rows: 11.4rem 1fr;
+    /* seta o tamanho das linhas */
     grid-template-areas: /* posicionamentos dos elementos no grid */
-    'header header'
-    'left right'
+    'header header' 'left right'
 }
 
 header {
@@ -39,13 +41,13 @@ input {
     border: .2rem solid var(--grey-blue);
     padding: 0 1.6rem;
     outline: none;
+    -moz-appearance: textfield;
 }
 
-input, button, .button{
+input, button, .button {
     width: 100%;
     margin-bottom: 1.8rem;
 }
-
 
 .separator {
     display: flex;
@@ -61,8 +63,7 @@ input, button, .button{
     line-height: 0;
 }
 
-.separator div:nth-child(1),
-.separator div:nth-child(3) {
+.separator div:nth-child(1), .separator div:nth-child(3) {
     background: var(--grey-blue);
     width: 100%;
     height: 1px;

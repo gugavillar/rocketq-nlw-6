@@ -45,7 +45,8 @@
                 <h2>Faça sua pergunta</h2>
                 <form action="/question/create/<%=roomId %>" method="POST">
                     <label class="sr-only" for="question">O que você quer perguntar?</label>
-                    <textarea name="question" id="question" placeholder="O que você quer perguntar?"></textarea>
+                    <textarea name="question" id="question" placeholder="O que você quer perguntar?"
+                        required></textarea>
                     <footer>
                         <div>
                             <img src="/images/lock.svg" alt="Cadeado">
@@ -117,7 +118,7 @@
             <p>Tem certeza que você deseja excluir essa pergunta?</p>
             <form action="#" method="POST">
                 <label class="sr-only" for="password">Digite sua senha admin</label>
-                <input name="password" id="password" type="password" placeholder="Digite sua senha admin">
+                <input name="password" id="password" type="password" placeholder="Digite sua senha admin" required>
                 <div class="buttons">
                     <div class="button grey cancel">Cancelar</div>
                     <button class="red">Sim, excluir</button>
