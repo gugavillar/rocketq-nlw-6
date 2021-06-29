@@ -7,6 +7,7 @@ const deleteButtons = document.querySelectorAll('.actions a.delete');
 const modalTitle = document.querySelector('.modal h2');
 const modalDescription = document.querySelector('.modal p');
 const modalButton = document.querySelector('.modal button');
+const copyButton = document.querySelector('.buttons #room-id');
 
 checkButtons.forEach(button => {
     button.addEventListener('click', handleClick);
@@ -15,6 +16,8 @@ checkButtons.forEach(button => {
 deleteButtons.forEach(button => {
     button.addEventListener('click', (event) => handleClick(event, false));
 });
+
+copyButton.addEventListener('click', copyRoomCodeToClipboard);
 
 function handleClick(event, check = true) {
     event.preventDefault();
@@ -31,4 +34,9 @@ function handleClick(event, check = true) {
     modalButton.innerHTML = `Sim, ${text.toLowerCase()}`;
     check ? modalButton.classList.remove('red') : modalButton.classList.add('red');
     modal.open();
+}
+
+function copyRoomCodeToClipboard() {
+    const roomId = document.querySelector('#room-id').dataset.id;
+    navigator.clipboard.writeText(roomId);
 }
